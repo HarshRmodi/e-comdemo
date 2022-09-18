@@ -1,0 +1,54 @@
+<form name="form" #ShopForm="ngForm">
+    <div class="modal-header">
+        <h4 class="modal-title">Add Shop</h4>
+        <button type="button" class="close" aria-label="Close" (click)="_activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <!-- [(ngModel)]="" -->
+        <div class="form-group my-2">
+            <div class="input-group">
+                <span class="input-group-addon"><label for="shopName">Shop Name</label></span>
+                <input type="text" class="form-control" name="shopName" id="shopName" placeholder=""
+                    [(ngModel)]="shopObj.shopName" autofocus autocomplete="off" required />
+            </div>
+        </div>
+        <div class="form-group my-2">
+            <div class="input-group">
+                <span class="input-group-addon"><label for="categoryId">Category</label></span>
+                <select class="form-select" aria-label="Default select example" name="categoryId"
+                    [(ngModel)]="shopObj.categoryId" required>
+                    <option selected value="">Select Category</option>
+                    <option *ngFor="let item of categorylist" [value]="item.id">{{item.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group my-2">
+            <div class="input-group">
+                <span class="input-group-addon"><label for="vendorId">Vendor</label></span>
+                <select class="form-select" aria-label="Default select example" name="vendorId"
+                    [(ngModel)]="shopObj.vendorId" required>
+                    <option selected value="">Select Vender</option>
+                    <option *ngFor="let item of vendorlist.data" [value]="item.id">{{item.firstName}} {{item.lastName}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <!-- 
+    <div class="form-group my-2">
+        <div class="input-group">
+            <span class="input-group-addon"><label for="shopName">Vendor</label></span>
+            <input ngx-google-places-autocomplete (onAddressChange)="AddressChange($event)" />
+            {{ formattedaddress }}
+        </div>
+    </div> -->
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="_activeModal.close('Close click')">Close</button>
+        <button type="button" class="btn btn-primary" [disabled]="!ShopForm.valid" (click)="onSubmit(ShopForm)">Save
+            changes</button>
+    </div>
+</form>
+
+<!-- AIzaSyA8kEkp4l5teWcqxICWYVklaiZgDjqpqqo -->

@@ -1,0 +1,34 @@
+<div class="mx-5">
+    <div *ngIf="categorylist && categorylist.data.length> 0" class="categorylist d-flex ">
+        <button type="button" class="btn my-2" [ngClass]="{'btn-primary':isSelected,'btn-outline-primary':!isSelected}"
+            (click)="filterShop()">All</button>
+        <button *ngFor="let item of categorylist.data" (click)="filterShop(item)" type="button" class="btn mx-1 my-2"
+            [ngClass]="{'btn-primary':item.isSelected,'btn-outline-primary':!item.isSelected}"> {{item.name}}</button>
+    </div>
+    <div class="float-end">
+        <button type="button" class="btn btn-primary mx-1 my-2" (click)="openModal()">Add shop</button>
+    </div>
+</div>
+<div *ngIf="shopFilterList && shopFilterList.data.length > 0" class="mx-5">
+    <h5 class="card-title">Shop List</h5>
+
+    <div class="container-fluid" *ngIf="shopFilterList">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 shop-card" *ngFor="let item of shopFilterList.data">
+                <div class="card shop-border my-2">
+                    <img class="card-img-top" src="" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><b>Name: </b> {{item.name}}</h5>
+                        <p class="card-text"><b>Description: </b>{{item.desc}}</p>
+                        <p class="card-text"><b>Timing: </b>{{item.open}} - {{item.close}}</p>
+                        <p class="card-text"><b>Rating: </b>
+                            <ngb-rating *ngIf="item && item.rating" [max]="5" [(rate)]="item.rating.$numberDecimal"
+                                [readonly]="true"></ngb-rating>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
